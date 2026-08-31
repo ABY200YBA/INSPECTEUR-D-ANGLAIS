@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IEMS ANGLE — Coach Inspectorat Anglais</title>
+<meta name="description" content="Préparation professionnelle au concours IEMS – Inspecteur de Spécialité Anglais au Sénégal.">
+<style>
+:root{
+  --bg:#07111f;--panel:#0d1b2e;--panel2:#12243b;--text:#edf5ff;--muted:#9fb2c9;
+  --accent:#36b6ff;--accent2:#7c5cff;--good:#25d49a;--warn:#ffc857;--bad:#ff667a;
+  --line:#203650;--shadow:0 18px 50px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#06101d,#0a1729 55%,#101a35);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+.sidebar{background:rgba(5,13,24,.92);border-right:1px solid var(--line);padding:22px 16px;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:25px}
+.logo{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:900;color:#06101d}
+.brand h1{font-size:16px;line-height:1.1;margin:0}.brand small{color:var(--muted)}
+.nav button{width:100%;text-align:left;background:transparent;border:0;color:#cbd8e8;padding:12px;border-radius:10px;margin:3px 0}
+.nav button:hover,.nav button.active{background:#142a43;color:white}
+.nav button span{display:inline-block;width:24px}
+.sidebox{margin-top:22px;background:#0d1b2e;border:1px solid var(--line);border-radius:14px;padding:14px}
+.sidebox b{font-size:12px}.progressbar{height:7px;background:#17283d;border-radius:99px;overflow:hidden;margin-top:8px}.progressbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+main{padding:28px;max-width:1500px;width:100%;margin:auto}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:20px}
+.top h2{margin:0;font-size:28px}.top p{margin:5px 0;color:var(--muted)}
+.badge{border:1px solid #285176;background:#0e243b;color:#8fd6ff;padding:7px 10px;border-radius:999px;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{background:linear-gradient(180deg,rgba(18,36,59,.94),rgba(10,25,42,.94));border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow)}
+.hero{grid-column:span 8;min-height:240px;background:radial-gradient(circle at 85% 10%,#263f80 0,transparent 35%),linear-gradient(135deg,#102844,#0a182b)}
+.stats{grid-column:span 4;display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.stat{padding:16px;border-radius:14px;background:#0b1a2c;border:1px solid var(--line)}.stat strong{display:block;font-size:28px}.stat small{color:var(--muted)}
+.section{grid-column:span 12}.half{grid-column:span 6}.third{grid-column:span 4}
+h3{margin:0 0 9px;font-size:18px}h4{margin:10px 0 6px}p{line-height:1.55}.muted{color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{border:1px solid #2b5375;background:#12314d;color:white;padding:10px 14px;border-radius:10px}
+.btn:hover{filter:brightness(1.14)}.btn.primary{background:linear-gradient(135deg,#159bdc,#5b56e8);border-color:transparent}.btn.good{background:#0e5a4a;border-color:#1b876f}.btn.warn{background:#614817;border-color:#8a6a25}.btn.bad{background:#5e2430;border-color:#8c3344}
+.view{display:none}.view.active{display:block}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;background:#172d46;color:#a9c5e2;margin:2px}
+.question{font-size:18px;font-weight:700;line-height:1.45;margin:10px 0 16px}
+.option{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;background:#0a192a;border:1px solid #25415e;color:#e7f1fc;border-radius:10px}
+.option:hover{border-color:#4d83b0}.option.correct{border-color:var(--good);background:#0d352e}.option.wrong{border-color:var(--bad);background:#3b1720}
+.feedback{padding:12px;border-radius:10px;margin-top:12px;background:#0b1928;border-left:4px solid var(--accent)}
+textarea,input,select{width:100%;background:#081727;color:#eaf4ff;border:1px solid #27445f;border-radius:10px;padding:11px;outline:none}
+textarea{min-height:140px;resize:vertical}
+.flex{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.timer{font-variant-numeric:tabular-nums;font-size:22px;font-weight:800;color:#9fe2ff}
+.skeleton .step{padding:12px;border-left:3px solid var(--accent);background:#0a1b2d;margin:8px 0;border-radius:0 10px 10px 0}
+.case{border:1px solid var(--line);border-radius:13px;padding:14px;background:#0a192a;margin:10px 0}
+.tag{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#6bc8ff}
+table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:#9edbff}
+.search{max-width:620px}.coachmsg{padding:14px;border-radius:12px;margin:10px 0;max-width:92%;white-space:pre-line}.user{margin-left:auto;background:#173a5c}.coach{background:#102a23;border:1px solid #245f4f}.coach-status{font-size:12px;color:var(--muted);margin-top:10px}.voice-live{color:#ffcc66}.doc-link{display:inline-flex;align-items:center;gap:8px;margin-top:8px}
+.kpi{font-size:12px;color:var(--muted)}
+.notice{padding:12px;border-radius:11px;background:#241f0e;border:1px solid #5c4b1c;color:#f7dfa0}
+.source a{color:#7bd2ff}.source{font-size:13px;line-height:1.6}
+@media(max-width:1050px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.nav{display:flex;overflow:auto}.nav button{min-width:max-content}.hero,.stats,.half,.third{grid-column:span 12}.stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){main{padding:16px}.stats{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">IA</div><div><h1>IEMS ANGLE</h1><small>Coach Inspectorat · Anglais</small></div></div>
+  <nav class="nav" id="nav">
+    <button data-view="dashboard" class="active"><span>⌂</span>Tableau de bord</button>
+    <button data-view="qcm"><span>✓</span>QCM & questions</button>
+    <button data-view="dissert"><span>✎</span>Dissertations</button>
+    <button data-view="cases"><span>▣</span>Études de cas</button>
+    <button data-view="legislation"><span>§</span>Législation scolaire</button>
+    <button data-view="didactics"><span>EN</span>Didactique Anglais</button>
+    <button data-view="oral"><span>◉</span>Oral inspecteur</button>
+    <button data-view="mock"><span>⏱</span>Simulation concours</button>
+    <button data-view="coach"><span>AI</span>Coach</button>
+    <button data-view="sources"><span>↗</span>Sources</button>
+  </nav>
+  <div class="sidebox">
+    <b>PROGRESSION</b>
+    <div class="kpi" id="sideProgress">0 réponse validée</div>
+    <div class="progressbar"><i id="sideBar"></i></div>
+  </div>
+</aside>
+
+<main>
+<div id="dashboard" class="view active">
+  <div class="top"><div><h2>Prépa IEMS — Inspecteur de Spécialité Anglais</h2><p>Un environnement d'entraînement orienté concours, inspection, didactique et législation sénégalaise.</p></div><span class="badge">Édition 2026 · Sénégal + repères France</span></div>
+  <div class="grid">
+    <section class="card hero">
+      <div class="tag">MODE COACH</div><h3 style="font-size:27px">Travaillez comme un futur inspecteur.</h3>
+      <p>Alternez connaissances, analyse de situations, dissertation, didactique de l'anglais et préparation orale. Le système conserve votre progression dans ce navigateur.</p>
+      <div class="actions">
+        <button class="btn primary" onclick="showView('qcm')">Commencer un entraînement</button>
+        <button class="btn" onclick="showView('mock')">Lancer une simulation</button>
+        <button class="btn" onclick="showView('coach')">Interroger le Coach</button>
+      </div>
+    </section>
+    <section class="stats">
+      <div class="stat"><strong id="sScore">0%</strong><small>score QCM</small></div>
+      <div class="stat"><strong id="sDone">0</strong><small>réponses validées</small></div>
+      <div class="stat"><strong>8</strong><small>dissertations guidées</small></div>
+      <div class="stat"><strong>6</strong><small>études de cas</small></div>
+    </section>
+    <section class="card half">
+      <h3>Parcours recommandé</h3>
+      <p><span class="pill">1. Législation</span><span class="pill">2. Missions IEMS</span><span class="pill">3. Didactique</span><span class="pill">4. Dissertation</span><span class="pill">5. Étude de cas</span><span class="pill">6. Oral</span></p>
+      <p class="muted">Objectif : passer d'une réponse scolaire à une réponse d'encadreur — diagnostic, fondement réglementaire, décision, accompagnement, suivi-évaluation.</p>
+    </section>
+    <section class="card half">
+      <h3>Principe méthodologique</h3>
+      <p>Pour chaque réponse, cherchez : <b>diagnostic → référence → analyse → proposition → indicateur de suivi</b>.</p>
+      <p class="muted">Cette logique est cohérente avec les fonctions de contrôle, animation, formation et encadrement pédagogique attribuées à l'IEMS dans les ressources sénégalaises consultées.</p>
+    </section>
+    <section class="card section">
+      <h3>À propos du corpus</h3>
+      <div class="notice">Les sujets de simulation ci-dessous sont des sujets d'entraînement construits à partir des missions, programmes et documents de préparation consultés. Ils ne sont pas présentés comme des sujets officiels antérieurs lorsque le sujet original n'a pas été retrouvé.</div>
+    </section>
+  </div>
+</div>
+
+<div id="qcm" class="view">
+  <div class="top"><div><h2>QCM & questions de cours</h2><p>Banque mixte : inspectorat, pédagogie, didactique de l'anglais, évaluation et système éducatif.</p></div><span class="badge" id="qIndex">1 / 30</span></div>
+  <div class="card">
+    <div class="flex"><span class="pill" id="qTopic">Inspectorat</span><span class="pill" id="qLevel">Avancé</span><span class="timer" id="qTimer">00:00</span></div>
+    <div class="question" id="question"></div>
+    <div id="options"></div>
+    <div id="qFeedback"></div>
+    <div class="actions"><button class="btn" id="nextQ" disabled>Question suivante →</button><button class="btn warn" id="shuffleQ">Nouvelle série</button></div>
+  </div>
+</div>
+
+<div id="dissert" class="view">
+  <div class="top"><div><h2>Laboratoire de dissertation</h2><p>Sujets traités partiellement sous forme de squelettes réutilisables.</p></div></div>
+  <div class="card">
+    <select id="disSelect"></select>
+    <div id="disBody" class="skeleton" style="margin-top:15px"></div>
+    <div class="actions"><button class="btn primary" onclick="showDisAnswer()">Afficher le squelette complet</button><button class="btn" onclick="copyDis()">Copier</button></div>
+  </div>
+  <div class="grid" style="margin-top:16px">
+    <div class="card half"><h3>Technique express</h3><ol><li>Définir les termes.</li><li>Repérer la tension du sujet.</li><li>Formuler une problématique.</li><li>Construire 2–3 axes équilibrés.</li><li>Illustrer par le Sénégal et le contexte éducatif.</li><li>Conclure avec une réponse nuancée et opérationnelle.</li></ol></div>
+    <div class="card half"><h3>Critères de correction</h3><p>Compréhension du sujet · problématique · pertinence des références · qualité de l'argumentation · exemples · cohérence du plan · langue · conclusion.</p></div>
+  </div>
+</div>
+
+<div id="cases" class="view">
+  <div class="top"><div><h2>Études de cas IEMS</h2><p>Diagnostic institutionnel, pédagogique et réglementaire.</p></div></div>
+  <div id="caseList"></div>
+</div>
+
+<div id="legislation" class="view">
+  <div class="top"><div><h2>Législation scolaire du Sénégal</h2><p>Fiches de mémorisation et mini-questions.</p></div></div>
+  <div class="card"><div class="notice">La législation évolue. Pour un concours réel, vérifiez toujours le texte officiel le plus récent. L'application contient des repères, pas un avis juridique.</div></div>
+  <div class="grid" id="legalGrid" style="margin-top:16px"></div>
+</div>
+
+<div id="didactics" class="view">
+  <div class="top"><div><h2>Didactique & spécialité Anglais</h2><p>Language acquisition, classroom interaction, assessment, curriculum et observation de cours.</p></div></div>
+  <div class="grid" id="didGrid"></div>
+</div>
+
+<div id="oral" class="view">
+  <div class="top"><div><h2>Oral de futur inspecteur</h2><p>Répondez en 90 secondes puis comparez avec la trame attendue.</p></div></div>
+  <div class="card">
+    <select id="oralSelect"></select>
+    <div class="question" id="oralQ" style="margin-top:18px"></div>
+    <textarea id="oralInput" placeholder="Votre réponse..."></textarea>
+    <div class="actions"><button class="btn primary" onclick="revealOral()">Voir la trame de réponse</button><button class="btn" onclick="newOral()">Question aléatoire</button></div>
+    <div id="oralAnswer"></div>
+  </div>
+</div>
+
+<div id="mock" class="view">
+  <div class="top"><div><h2>Simulation concours</h2><p>Mode chronométré. Composez sans correction immédiate.</p></div><span class="timer" id="mockTimer">120:00</span></div>
+  <div class="card">
+    <div class="flex"><label style="min-width:220px">Durée <select id="mockDuration"><option value="30">30 min</option><option value="60">60 min</option><option value="120" selected>120 min</option><option value="180">180 min</option></select></label><button class="btn primary" id="mockStart">Démarrer</button><button class="btn bad" id="mockStop">Terminer</button></div>
+    <hr style="border-color:var(--line);margin:18px 0">
+    <div id="mockPaper"></div>
+    <div id="mockResult"></div>
+  </div>
+</div>
+
+<div id="coach" class="view">
+  <div class="top"><div><h2>COACH IEMS — Anglais</h2><p>Coach de préparation approfondie : réponses structurées, entraînement écrit, dictée et restitution vocale.</p></div><span class="badge" id="voiceBadge">Voix disponible si compatible</span></div>
+  <div class="card">
+    <div id="chat" style="min-height:260px;max-height:500px;overflow:auto"></div>
+    <div class="flex" style="margin-top:10px"><input id="coachInput" placeholder="Ex. Construis une réponse d'oral sur une inspection d'anglais." class="search"><button class="btn primary" onclick="askCoach()">Demander</button><button class="btn" id="voiceInput" onclick="toggleListening()">🎙 Dicter</button><button class="btn" id="voiceOutput" onclick="speakLastAnswer()">🔊 Écouter</button></div>
+    <div class="coach-status" id="coachStatus">Le Coach répond à partir du corpus intégré. La reconnaissance vocale dépend de votre navigateur et de votre connexion.</div>
+    <div class="actions"><button class="btn" onclick="quickCoach('Quelles sont les fonctions de l’IEMS et comment les appliquer lors d’une inspection ?')">Fonctions IEMS</button><button class="btn" onclick="quickCoach('Fais une réponse complète sur la loi 2004-37 au Sénégal')">Loi 2004-37</button><button class="btn" onclick="quickCoach('Comment analyser un cours d anglais communicatif ?')">Observer un cours</button><button class="btn" onclick="quickCoach('Explique Task Based Language Teaching pour un inspecteur')">TBLT</button><button class="btn" onclick="quickCoach('Propose une méthode de dissertation IEMS')">Dissertation</button></div>
+  </div>
+  <div class="grid" style="margin-top:16px"><section class="card half"><div class="tag">ENTRAÎNEMENT ÉCRIT</div><h3>Faites corriger votre trame</h3><p class="muted">Collez une réponse d'oral, un plan ou une étude de cas. Le Coach vérifie la présence du diagnostic, du cadre, des propositions et du suivi.</p><textarea id="writtenAnswer" placeholder="Collez ici votre réponse..." style="min-height:120px"></textarea><div class="actions"><button class="btn good" onclick="reviewWrittenAnswer()">Analyser ma réponse</button></div><div id="writtenFeedback"></div></section><section class="card half"><div class="tag">CORPUS DOCUMENTAIRE</div><h3>Techniques and Principles in Language Teaching</h3><p>Le PDF fourni (Larsen-Freeman & Anderson) complète le Coach pour les méthodes : communicative approach, task-based learning, CLIL/content-based instruction, participatory approach, Silent Way et technologie.</p><a class="btn doc-link" href="resources/techniques-in-language-teaching.pdf" target="_blank" rel="noopener">Ouvrir le PDF de référence (318 pages)</a><p class="muted">Référence de didactique : utile pour analyser des choix pédagogiques, sans remplacer les textes officiels sénégalais.</p></section></div>
+</div>
+
+<div id="sources" class="view">
+  <div class="top"><div><h2>Sources & documentation</h2><p>Corpus utilisé pour construire la structure de l'entraînement.</p></div></div>
+  <div class="grid" id="sourceGrid"></div>
+</div>
+</main>
+</div>
+
+<script>
+const Q=[
+{t:"Inspectorat",q:"Dans le cahier des charges IEMS, quelle combinaison décrit le cœur des fonctions de l'IEMS ?",o:["Contrôle, animation, formation et encadrement pédagogique et technique","Uniquement sanction disciplinaire et gestion financière","Uniquement recrutement et examens","Uniquement production de manuels"],a:0,e:"Le cahier des charges IEMS présenté dans la documentation sénégalaise articule contrôle, animation, formation et encadrement pédagogique et technique."},
+{t:"Système éducatif",q:"Quelle loi porte l'orientation de l'Éducation nationale au Sénégal ?",o:["Loi 71-36","Loi 91-22 du 16 février 1991","Loi 2015-01","Loi 2022-08"],a:1,e:"La loi 91-22 du 16 février 1991 est la loi d'orientation de l'Éducation nationale, modifiée notamment en 2004."},
+{t:"Législation",q:"La loi 2004-37 a notamment introduit :",o:["L'obligation scolaire de 6 à 16 ans","La suppression du moyen secondaire","Le concours IEMS","La création de la FASTEF"],a:0,e:"Elle a ajouté l'article 3 bis rendant la scolarité obligatoire de 6 à 16 ans, avec gratuité dans le public."},
+{t:"Inspectorat",q:"Une visite d'inspection de qualité devrait prioritairement produire :",o:["Un jugement sans preuves","Un diagnostic fondé sur des observations, des preuves et des pistes d'amélioration","Une sanction automatique","Une simple note administrative"],a:1,e:"L'inspection doit articuler observation, analyse, conseil et suivi ; la décision doit être étayée."},
+{t:"Pédagogie",q:"La pédagogie par objectifs se caractérise d'abord par :",o:["Des objectifs d'apprentissage explicitement définis","L'absence d'évaluation","La suppression des activités","Une pédagogie exclusivement magistrale"],a:0,e:"Votre corpus la présente comme une approche centrée sur la définition claire des objectifs et leur alignement avec enseignement et évaluation."},
+{t:"Pédagogie",q:"Le constructivisme met particulièrement l'accent sur :",o:["La mémorisation mécanique seule","La construction active des connaissances par l'apprenant","L'enseignant comme unique source","La suppression des interactions"],a:1,e:"Le corpus sur les innovations pédagogiques associe constructivisme, activité de l'apprenant, interaction et découverte."},
+{t:"Vygotsky",q:"La Zone Proximale de Développement renvoie à :",o:["L'écart entre ce que l'apprenant peut faire seul et avec une aide adaptée","Un niveau fixe de QI","Une méthode de notation","Une sanction pédagogique"],a:0,e:"La ZPD est l'espace entre la performance autonome et ce qui devient possible avec l'accompagnement d'un médiateur plus compétent."},
+{t:"Vygotsky",q:"Dans une lecture socioculturelle, le rôle du médiateur est surtout de :",o:["Faire à la place de l'apprenant","Soutenir progressivement l'activité pour permettre l'appropriation","Donner uniquement des notes","Éviter toute interaction"],a:1,e:"Le médiateur soutient, questionne, étaye puis transfère progressivement la responsabilité."},
+{t:"Krashen",q:"Dans le modèle présenté par votre corpus, l'acquisition est favorisée par :",o:["Le comprehensible input","La traduction mot à mot uniquement","La mémorisation de règles sans contexte","L'absence de communication"],a:0,e:"Le texte de Tricomi expose l'importance du comprehensible input et la distinction acquisition/learning."},
+{t:"Krashen",q:"Le Monitor intervient surtout lorsque :",o:["Le locuteur parle spontanément sans temps","Il y a suffisamment de temps et une attention portée à la forme","L'apprenant dort","Le sens est totalement ignoré"],a:1,e:"Dans le modèle de Krashen présenté, le contrôle conscient des règles a des conditions d'utilisation limitées."},
+{t:"Lexical Approach",q:"Un lexical chunk peut être :",o:["Une collocation ou une expression figée","Uniquement un phonème","Uniquement une règle de grammaire","Une note d'inspection"],a:0,e:"Le corpus Cambridge cite collocations, expressions figées, formules, sentence starters, verb patterns et idiomes."},
+{t:"Didactique Anglais",q:"Pourquoi travailler les lexical chunks en anglais ?",o:["Pour favoriser fluidité, idiomaticité et traitement de la langue","Pour éviter toute compréhension orale","Pour remplacer toute grammaire","Pour empêcher la communication"],a:0,e:"Les documents fournis associent chunks, fluidité, compétence communicative et meilleure perception des patrons de langue."},
+{t:"Évaluation",q:"Une évaluation formative sert principalement à :",o:["Classer définitivement les élèves","Informer la régulation des apprentissages","Remplacer tout enseignement","Sanctionner les erreurs"],a:1,e:"Elle produit des informations utiles pour ajuster l'enseignement et les apprentissages."},
+{t:"Inspection",q:"Après une observation de cours, le feedback professionnel devrait être :",o:["Vague et personnel","Descriptif, argumenté, orienté vers l'amélioration et assorti d'un suivi","Exclusivement négatif","Uniquement oral et sans trace"],a:1,e:"Un feedback d'encadrement doit partir de faits observables, analyser leurs effets et proposer des actions suivies."},
+{t:"Curriculum",q:"Pour un inspecteur de spécialité, l'alignement curriculum-enseignement-évaluation signifie :",o:["Que les évaluations doivent refléter les apprentissages visés","Que les examens sont indépendants du programme","Que seul le manuel compte","Que la progression est facultative"],a:0,e:"L'alignement relie objectifs/compétences, activités d'enseignement et preuves d'apprentissage."},
+{t:"Sénégal",q:"Dans les documents officiels consultés, la FASTEF est notamment chargée de :",o:["Former des enseignants, inspecteurs et cadres de l'éducation","Gérer les collectivités territoriales","Organiser uniquement le bac","Produire les budgets nationaux"],a:0,e:"Les missions publiées par la FASTEF incluent formation, recherche, formation des cadres de contrôle et production de matériels didactiques."},
+{t:"IEMS",q:"L'IEMS exerce ses fonctions sous l'autorité de :",o:["L'Inspecteur d'Académie dans le cadre d'une lettre de mission","Un chef de village","Le seul proviseur","Un jury externe"],a:0,e:"Le cahier des charges IEMS cité dans la recherche précise ce cadre d'autorité et de mission."},
+{t:"Étude de cas",q:"La première étape d'une étude de cas professionnelle est :",o:["Choisir une sanction","Établir un diagnostic à partir de faits et de données","Écrire la conclusion","Ignorer les acteurs"],a:1,e:"Votre document d'étude de cas insiste sur la conception, la collecte de données et l'analyse avant la présentation des résultats."},
+{t:"Gestion",q:"Face à un conflit enseignant-chef d'établissement, l'inspecteur doit d'abord :",o:["Prendre parti","Recueillir les faits, entendre les parties et vérifier le cadre applicable","Publier le conflit","Sanctionner immédiatement"],a:1,e:"Le raisonnement d'inspection commence par les faits, le cadre réglementaire et l'analyse des responsabilités."},
+{t:"Pédagogie",q:"La différenciation pédagogique vise à :",o:["Adapter l'enseignement aux besoins, profils et niveaux des apprenants","Donner exactement la même tâche sans adaptation","Réduire les exigences","Séparer définitivement les élèves"],a:0,e:"Votre corpus sur Vygotsky et la différenciation relie adaptation, besoins, profils, readiness, ZPD et scaffolding."},
+{t:"Histoire éducation",q:"La loi 91-22 insiste notamment sur le caractère :",o:["National, démocratique, laïque et populaire","Uniquement privé","Militaire","Commercial"],a:0,e:"Le résumé juridique consulté présente ces principes comme centraux."},
+{t:"Innovation",q:"Une innovation pédagogique pertinente au Sénégal doit notamment :",o:["Être adaptée aux réalités socio-culturelles locales","Être importée sans adaptation","Ignorer les langues","Supprimer l'évaluation"],a:0,e:"Le corpus sur les innovations souligne l'adaptation aux langues, traditions éducatives et valeurs communautaires."},
+{t:"France",q:"Dans le modèle IA-IPR français, l'inspecteur participe notamment à :",o:["L'évaluation, la formation, l'animation pédagogique et l'organisation des examens","La gestion des communes","La police scolaire","La construction des routes"],a:0,e:"Le ministère français décrit ces missions, utilisées ici comme repère comparatif, pas comme réglementation sénégalaise."},
+{t:"France",q:"Pour la session 2027 IA-IPR en France, l'admissibilité repose sur :",o:["Un dossier RAEP étudié par le jury","Un QCM unique","Un concours de dictée","Un oral sans dossier"],a:0,e:"Le ministère français indique une admissibilité sur dossier RAEP et un oral de 15 min d'exposé + 45 min d'entretien."},
+{t:"Oral",q:"Une bonne réponse orale d'inspecteur doit privilégier :",o:["La récitation","La structure diagnostic → cadre → analyse → décision → suivi","Les opinions personnelles uniquement","Les anecdotes sans preuve"],a:1,e:"Cette matrice est la colonne vertébrale du Coach IEMS."},
+{t:"Anglais",q:"Dans une classe d'anglais, l'observation d'une activité communicative doit regarder en priorité :",o:["Les possibilités réelles de prise de parole et l'adéquation tâche-objectifs","La quantité de craie utilisée","La décoration de la salle","Le silence absolu"],a:0,e:"L'inspecteur observe les actes pédagogiques et leur cohérence avec les objectifs d'apprentissage."},
+{t:"Anglais",q:"Une activité de speaking bien conçue doit fournir :",o:["Une intention de communication, des ressources et une tâche à accomplir","Uniquement une liste de règles","Aucune interaction","Une copie à mémoriser"],a:0,e:"La logique communicative part d'une tâche, d'un besoin de sens et d'un dispositif permettant l'interaction."},
+{t:"Dissertation",q:"Dans une dissertation, la problématique sert à :",o:["Reformuler le sujet sans questionnement","Faire émerger la tension intellectuelle qui organise l'argumentation","Ajouter des citations","Remplacer le plan"],a:1,e:"Votre document de dissertation présente la problématique comme le cœur qui guide la recherche et le développement de l'argumentation."},
+{t:"Dissertation",q:"Un bon plan de dissertation doit :",o:["Être une suite d'idées sans lien","Répondre progressivement à la problématique avec des axes cohérents","Répéter l'introduction","Éviter les exemples"],a:1,e:"Le plan doit faire progresser le raisonnement et traiter les tensions du sujet."},
+{t:"Éthique",q:"Le devoir professionnel de l'inspecteur implique :",o:["Impartialité, confidentialité, rigueur et respect du cadre","Favoritisme","Diffusion des informations personnelles","Jugement sans preuve"],a:0,e:"L'inspection est une fonction de contrôle et d'accompagnement qui exige une posture professionnelle et des preuves."}
+];
+
+const D=[
+{title:"L'intelligence artificielle va-t-elle transformer durablement le métier d'enseignant ?",problem:"Comment l'IA peut-elle augmenter l'efficacité pédagogique sans affaiblir le jugement professionnel, l'autonomie de l'apprenant et l'éthique scolaire ?",steps:[
+["Introduction","Définir IA / métier enseignant / transformation. Poser la tension entre assistance et substitution."],
+["I. Potentiels","Personnalisation, feedback, différenciation, production de ressources, accessibilité."],
+["II. Risques","Dépendance, erreurs, biais, triche, protection des données, appauvrissement du jugement."],
+["III. Gouvernance pédagogique","Former les enseignants, définir des règles, vérifier les productions, maintenir l'humain au centre."],
+["Conclusion","L'IA transforme les pratiques si elle est intégrée à une politique de qualité et non comme remplacement du professionnel."]
+]},
+{title:"La qualité de l'éducation dépend-elle davantage des enseignants que des programmes ?",problem:"Comment articuler qualité des curricula, compétences professionnelles des enseignants, conditions de travail et pilotage ?",steps:[
+["Introduction","Définir qualité, programmes, professionnalité ; éviter l'opposition simpliste."],
+["I. Le rôle structurant des enseignants","Interprétation du curriculum, gestion de classe, médiation, évaluation."],
+["II. Les limites d'une vision centrée sur l'enseignant","Curriculum, ressources, effectifs, gouvernance, formation continue."],
+["III. Vers un système cohérent","Alignement curriculum-formation-évaluation-pilotage ; rôle de l'inspection."],
+["Conclusion","La qualité est systémique ; l'enseignant est central mais non isolé."]
+]},
+{title:"L'approche par compétences a-t-elle rendu l'évaluation plus pertinente ?",problem:"Comment concilier évaluation de compétences, connaissances fondamentales, fiabilité et équité ?",steps:[
+["I. Apports","Tâches complexes, contextualisation, mobilisation des ressources."],
+["II. Difficultés","Complexité de la mesure, fiabilité, formation des enseignants, explicitation des critères."],
+["III. Conditions de réussite","Critères, situations authentiques, outils communs, formation, feedback."],
+["Conclusion","Équilibrer savoirs, savoir-faire et compétences ; éviter les slogans pédagogiques."]
+]},
+{title:"La formation continue des enseignants est-elle un levier de qualité ?",problem:"À quelles conditions la formation continue transforme-t-elle réellement les pratiques ?",steps:[
+["I. Pourquoi former","Évolution des programmes, numérique, inclusion, didactique, évaluation."],
+["II. Pourquoi l'effet peut rester faible","Formations ponctuelles, faible accompagnement, absence de suivi, inadéquation au terrain."],
+["III. Le rôle de l'inspection","Diagnostic des besoins, animation, observation, accompagnement, mesure des effets."],
+["Conclusion","Passer de la formation événementielle au développement professionnel continu."]
+]},
+{title:"L'école doit-elle s'adapter aux réalités socio-culturelles locales ?",problem:"Comment construire une école sénégalaise ouverte aux savoirs universels sans perdre son ancrage culturel ?",steps:[
+["I. L'ancrage local","Langues, histoire, valeurs, communautés, contextes d'apprentissage."],
+["II. Le risque du repli","Éducation scientifique et ouverture internationale."],
+["III. Articulation","Contextualiser les exemples, les tâches et les ressources tout en maintenant les standards de qualité."],
+["Conclusion","Ancrage local et ouverture universelle sont complémentaires."]
+]},
+{title:"Le contrôle pédagogique est-il compatible avec l'accompagnement ?",problem:"Comment l'inspecteur peut-il exercer une fonction de contrôle tout en favorisant la confiance et le développement professionnel ?",steps:[
+["I. Le contrôle est nécessaire","Qualité, conformité, équité, protection des élèves."],
+["II. Les risques","Peurs, posture punitive, réduction de l'inspection à la note."],
+["III. Contrôle intelligent","Preuves, dialogue professionnel, conseil, plan d'amélioration, suivi."],
+["Conclusion","L'autorité est plus efficace lorsqu'elle est lisible, juste et orientée vers la qualité."]
+]},
+{title:"Les technologies numériques améliorent-elles nécessairement l'apprentissage des langues ?",problem:"Quelles conditions pédagogiques déterminent l'effet réel du numérique en anglais ?",steps:[
+["I. Potentialités","Input, interaction, multimodalité, feedback, autonomie."],
+["II. Limites","Accès, distraction, surcharge cognitive, qualité des contenus, fracture numérique."],
+["III. Critères d'un usage pertinent","Objectifs, tâche, interaction, évaluation, accessibilité, sécurité."],
+["Conclusion","Le numérique est un moyen ; la valeur dépend du design pédagogique."]
+]},
+{title:"Peut-on enseigner une langue sans enseigner sa culture ?",problem:"Comment articuler compétence linguistique, compétence sociolinguistique et éducation interculturelle ?",steps:[
+["I. Langue et culture","Expressions, pragmatique, références, interaction."],
+["II. Risques","Stéréotypes, essentialisation, comparaison superficielle."],
+["III. Didactique interculturelle","Documents authentiques, comparaison critique, pluralité des voix, tâches."],
+["Conclusion","La culture doit être enseignée comme compétence d'interprétation, non comme catalogue."]
+]}
+];
+
+const CASES=[
+{title:"Classe de Seconde : faible prise de parole en anglais",situation:"Lors d'une visite, le professeur explique longuement la grammaire. Les élèves copient et répondent rarement. Les résultats écrits sont moyens, mais l'oral est très faible. Le professeur estime que les élèves 'ne veulent pas parler'.",questions:["Diagnostiquez la situation.","Quelles hypothèses pédagogiques tester ?","Que proposeriez-vous à l'enseignant ?","Quels indicateurs suivre après 4 semaines ?"],model:"Diagnostic : forte centralité du professeur, faible temps de parole élève, possible décalage objectifs-activités-évaluation. Vérifier niveau de confiance, consignes, tâches, temps de préparation et types de questions. Action : instaurer des micro-tâches pair-work, information gap, rehearsal, sentence starters/chunks, feedback ciblé. Suivi : temps de parole élève, nombre de prises de parole, participation distribuée, qualité des productions, progression aux évaluations orales."},
+{title:"Résultats faibles malgré une forte présence scolaire",situation:"Un établissement affiche une bonne assiduité mais des résultats faibles en anglais. Les enseignants utilisent plusieurs évaluations, sans grille commune. Les sujets portent surtout sur des items de restitution.",questions:["Quelles données collecter ?","Quel problème d'évaluation soupçonner ?","Comment animer l'équipe ?","Quel plan de suivi ?"],model:"Comparer progression, sujets, copies, critères, cahiers de textes et résultats par compétence. Hypothèse : faible alignement entre objectifs, tâches et évaluations. Organiser une cellule pédagogique : analyser des copies, définir des critères communs, construire une progression harmonisée, expérimenter un format, mesurer les effets."},
+{title:"Conflit entre deux enseignants sur les pratiques d'évaluation",situation:"Deux enseignants d'anglais utilisent des barèmes très différents. Les parents contestent les écarts de moyenne. Le chef d'établissement demande une intervention.",questions:["Comment agir sans arbitrer trop vite ?","Quelles références mobiliser ?","Quelle décision collective ?"],model:"Recueillir les évaluations et leurs objectifs. Vérifier programmes, progressions et textes applicables. Faire émerger des critères partagés sans imposer une uniformité artificielle. Proposer une harmonisation minimale : compétences ciblées, niveau de difficulté, critères, pondérations et modalités de correction. Prévoir une évaluation commune pilote."},
+{title:"Enseignant expérimenté mais résistant à l'innovation",situation:"Un professeur obtient de bons résultats mais refuse tout usage du numérique et toute activité collaborative. Il affirme que 'la méthode traditionnelle marche'.",questions:["Faut-il imposer une méthode ?","Comment argumenter ?","Quel accompagnement ?"],model:"Ne pas confondre innovation et qualité. Partir des résultats et des objectifs. Observer les pratiques. Identifier ce qui fonctionne et ce qui peut être amélioré. Proposer une expérimentation limitée et mesurable, par exemple une tâche collaborative ou une activité numérique ciblée. Comparer les effets avant/après."},
+{title:"Classe hétérogène et élèves en grande difficulté",situation:"Dans une classe de Troisième, un groupe avance vite tandis qu'un autre ne maîtrise pas les bases. Le professeur donne la même fiche à tous et constate découragement et bavardage.",questions:["Quel diagnostic ?","Quelles formes de différenciation ?","Comment éviter l'étiquetage ?"],model:"Identifier les prérequis manquants. Prévoir tâches à paliers, aides graduées, groupes flexibles, supports différenciés et objectifs communs avec chemins différents. Utiliser l'étayage puis retirer progressivement l'aide. Évaluer les progrès individuels sans figer les groupes."},
+{title:"Inspection : le cours est conforme mais peu efficace",situation:"Le professeur respecte le programme, utilise un manuel reconnu et termine sa séance. Pourtant, les élèves semblent passifs et les productions sont faibles.",questions:["La conformité suffit-elle ?","Que doit observer l'inspecteur ?","Quel feedback ?"],model:"Non. Vérifier les effets pédagogiques : activité cognitive, interaction, temps de parole, qualité des tâches, feedback, vérification de compréhension, différenciation et preuves d'apprentissage. Feedback descriptif : faits observés → effets → alternatives → engagement de l'enseignant → suivi."}
+];
+
+const LEGAL=[
+["Loi 91-22","16 février 1991","Loi d'orientation de l'Éducation nationale. Principes : caractère national, démocratique, laïque et populaire ; droit à l'éducation ; structuration du système éducatif."],
+["Loi 2004-37","15 décembre 2004","Modifie et complète la loi 91-22. Introduit l'article 3 bis : scolarité obligatoire de 6 à 16 ans ; gratuité dans les établissements publics ; obligation d'inscription et d'assiduité."],
+["Décret 77-987","14 novembre 1977","Statut particulier du cadre des fonctionnaires de l'enseignement, texte de référence cité dans des actes officiels et dans le cahier des charges IEMS, avec modifications."],
+["Décret 2011-537","26 avril 2011","Référence citée dans le cahier des charges IEMS pour l'article 4 bis relatif aux fonctions de contrôle, animation, formation et encadrement pédagogique et technique des IEMS."],
+["Décret 2012-1276","13 novembre 2012","Création des Inspections d'Académie et des Inspections de l'Éducation et de la Formation ; cadre de pilotage déconcentré."],
+["Décret 2017-604","24 avril 2017","Modifie le décret 2012-1276 ; met notamment l'accent sur pilotage, coordination, contrôle, suivi-évaluation et encadrement dans les circonscriptions."],
+["Curricula","Repère actuel","Le ministère sénégalais a communiqué sur la révision globale des curricula et l'ancrage de l'école dans les réalités sénégalaises et africaines."],
+["Éthique","Posture professionnelle","Pour l'entraînement : impartialité, confidentialité, preuves, respect du cadre, traçabilité, feedback et suivi."]
+];
+
+const DID=[
+["Vygotsky / ZPD","Apprentissage social, médiation, zone proximale de développement, étayage et transfert progressif de responsabilité.","Dans l'observation d'un cours d'anglais, regarder comment l'enseignant rend une tâche accessible puis retire l'aide."],
+["Krashen","Distinction acquisition/learning ; comprehensible input ; rôle limité du Monitor selon le corpus.","Question d'inspection : l'élève reçoit-il suffisamment d'anglais compréhensible et significatif ?"],
+["Lexical Approach","Chunks : collocations, expressions figées, formules, sentence starters, verb patterns, idiomes.","En anglais, enseigner 'give advice', 'as far as I know', 'I see your point' comme unités réutilisables."],
+["Approche communicative","La langue comme outil d'action : intention, interaction, négociation du sens, production.","Observer le ratio teacher talk/student talk et la réalité de la tâche communicative."],
+["Évaluation formative","Preuves d'apprentissage, feedback, régulation, remédiation.","L'inspecteur doit chercher ce que le professeur fait des erreurs et des données d'évaluation."],
+["Différenciation","Adapter supports, étayage, rythme, groupements et niveau d'aide sans abaisser les objectifs.","Chercher des groupes flexibles et des aides graduées plutôt que des groupes figés."],
+["Curriculum","Cohérence entre finalités, compétences, contenus, situations d'apprentissage et évaluation.","Question-clé : 'Quelle preuve montrera que l'objectif est atteint ?'"],
+["Inspection pédagogique","Observation, analyse, conseil, accompagnement et suivi-évaluation.","Passer du jugement intuitif à une analyse fondée sur des faits observables."]
+];
+
+const ORAL=[
+["Vous arrivez dans un lycée et devez inspecter un professeur d'anglais. Que faites-vous ?","Préparer la visite ; consulter contexte et documents ; observer sans perturber ; relever faits et preuves ; analyser objectifs/activités/évaluation ; conduire un entretien professionnel ; formuler points forts et priorités ; convenir d'actions ; programmer un suivi."],
+["Un enseignant refuse votre recommandation. Comment réagissez-vous ?","Écouter les motifs ; revenir aux objectifs et au cadre ; distinguer désaccord professionnel et non-conformité ; demander une expérimentation ; définir des indicateurs ; documenter la décision ; mobiliser la hiérarchie si une obligation réglementaire est en cause."],
+["Comment évaluer une séance d'anglais communicatif ?","Objectifs ; authenticité de la tâche ; compréhension des consignes ; temps de parole ; interaction ; étayage ; correction ; feedback ; différenciation ; preuves d'apprentissage ; cohérence avec l'évaluation."],
+["Quelle différence entre inspecter et contrôler ?","Contrôler vérifie une conformité ou un cadre ; inspecter, dans sa dimension pédagogique, observe, analyse, évalue et accompagne. Dans le rôle IEMS, les fonctions sont articulées : contrôle, animation, formation et encadrement."],
+["Que feriez-vous face à des résultats catastrophiques en anglais dans un établissement ?","Ne pas conclure à partir de la moyenne seule. Ventiler les résultats par niveau et compétence ; analyser sujets/copies ; observer les classes ; examiner progression et assiduité ; identifier causes ; co-construire un plan d'amélioration ; fixer indicateurs et échéances."],
+["Comment défendre une innovation pédagogique devant un enseignant sceptique ?","Partir d'un problème réel, non d'un effet de mode ; proposer une expérimentation limitée ; définir une hypothèse et des indicateurs ; observer ; comparer ; conserver ce qui produit un gain ; diffuser si les résultats sont convaincants."],
+["Quel est le rôle d'un inspecteur dans la formation continue ?","Identifier les besoins, concevoir ou contribuer à des actions de formation, animer, accompagner le transfert en classe, observer les effets et ajuster les dispositifs."],
+["Pourquoi la didactique de l'anglais est-elle indispensable à un inspecteur de spécialité ?","Parce qu'il doit pouvoir analyser les choix d'enseignement de la langue : objectifs linguistiques et communicatifs, tâches, progression, interaction, acquisition, évaluation et contextualisation."]
+];
+
+const SOURCES=[
+["PDF intégré — Techniques and Principles in Language Teaching","Ouvrage de Diane Larsen-Freeman et Marti Anderson, 3e édition. Corpus de didactique utilisé par le Coach pour les principales méthodes et techniques d’enseignement des langues.","resources/techniques-in-language-teaching.pdf"],
+["FASTEF UCAD — concours IEMS 2021","Page officielle annonçant les évaluations et mettant à disposition les documents de concours, dont un planning spécifique IEMS Anglais.","https://fastef.ucad.sn/communique_concours_IEMS_2021"],
+["FASTEF UCAD — formation des inspecteurs","Présentation de la filière Inspecteurs de spécialité et des conditions historiques de formation.","https://fastef.ucad.sn/revuefastef/inspecteurs.htm"],
+["FASTEF UCAD — programmes des élèves inspecteurs","Page FASTEF consacrée aux programmes de formation des élèves inspecteurs.","https://fastef.ucad.sn/revuefastef/inspecteurs-programmes.htm"],
+["FASTEF UCAD — département de formation des inspecteurs","Missions du département : contrôle pédagogique, évaluation, formation continue, programmes, examens et concours.","https://fastef.ucad.sn/DepFIE"],
+["FASTEF UCAD — psychopédagogie","Unités de psychopédagogie, communication en situation d'enseignement-apprentissage, métier d'enseignant, recherche en éducation.","https://fastef.ucad.sn/DepPsychopeda"],
+["Vie-Publique Sénégal — Loi 91-22","Texte et résumé de la loi d'orientation de l'Éducation nationale.","https://www.vie-publique.sn/documents/7672/loi-n-91-22-du-16-fevrier-1991-portant-orientation-de-l-education-nationale"],
+["Ministère de l'Éducation nationale du Sénégal — révision des curricula","Repères officiels sur les réformes, l'ancrage sénégalais et africain et la révision des curricula.","https://www.education.sn/posts/communique-de-presse-sur-la-la-revision-globale-des-curricula"],
+["Ministère français — IA-IPR","Repère comparatif : missions, évaluation, inspection, formation, examens et expertise des inspecteurs en France.","https://www.education.gouv.fr/etre-inspecteur-d-academie-inspecteur-pedagogique-regional-3179"],
+["Ministère français — concours IA-IPR 2027","Repère comparatif : RAEP à l'admissibilité et oral de 15 min + 45 min à l'admission.","https://www.education.gouv.fr/le-concours-de-recrutement-d-inspecteurs-d-academie-inspecteurs-pedagogiques-regionaux-ia-ipr-324530"],
+["Devenir enseignant — sujets CAPES 2026","Banque française de sujets et rapports de jury, notamment en anglais ; utilisée comme réservoir comparatif de didactique et d'exigences disciplinaires.","https://www.devenirenseignant.gouv.fr/sujets-et-rapports-des-jurys-concours-du-capes-de-2026-1657"],
+["Devenir enseignant — programmes CAPES 2027","Programmes 2027, notamment section langues vivantes étrangères : anglais.","https://www.devenirenseignant.gouv.fr/les-programmes-des-concours-d-enseignants-du-second-degre-de-la-session-2027-1662"]
+];
+
+let state=JSON.parse(localStorage.getItem("iemsState")||'{"done":0,"correct":0}');
+function save(){localStorage.setItem("iemsState",JSON.stringify(state));updateStats()}
+function updateStats(){
+  const pct=state.done?Math.round(state.correct/state.done*100):0;
+  document.getElementById("sScore").textContent=pct+"%";
+  document.getElementById("sDone").textContent=state.done;
+  document.getElementById("sideProgress").textContent=state.done+" réponse"+(state.done>1?"s":"")+" validée"+(state.done>1?"s":"");
+  document.getElementById("sideBar").style.width=Math.min(100,state.done/50*100)+"%";
+}
+function showView(id){
+  document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showView(b.dataset.view));
+
+let qi=0,answered=false,qStarted=Date.now();
+function loadQ(){
+  answered=false; qStarted=Date.now();
+  const q=Q[qi]; document.getElementById("qIndex").textContent=(qi+1)+" / "+Q.length;
+  document.getElementById("qTopic").textContent=q.t; document.getElementById("question").textContent=q.q;
+  document.getElementById("qFeedback").innerHTML="";
+  const box=document.getElementById("options"); box.innerHTML="";
+  q.o.forEach((x,i)=>{const b=document.createElement("button");b.className="option";b.textContent=String.fromCharCode(65+i)+". "+x;b.onclick=()=>answerQ(i,b);box.appendChild(b)});
+  document.getElementById("nextQ").disabled=true;
+}
+function answerQ(i,btn){
+  if(answered)return; answered=true; const q=Q[qi];
+  document.querySelectorAll(".option").forEach((b,j)=>{if(j===q.a)b.classList.add("correct");});
+  if(i!==q.a)btn.classList.add("wrong"); else state.correct++;
+  state.done++; save();
+  document.getElementById("qFeedback").innerHTML=`<div class="feedback"><b>${i===q.a?"✓ Correct":"✗ À corriger"}</b><br>${q.e}</div>`;
+  document.getElementById("nextQ").disabled=false;
+}
+document.getElementById("nextQ").onclick=()=>{qi=(qi+1)%Q.length;loadQ()};
+document.getElementById("shuffleQ").onclick=()=>{Q.sort(()=>Math.random()-.5);qi=0;loadQ()};
+setInterval(()=>{if(document.getElementById("qTimer")){let s=Math.floor((Date.now()-qStarted)/1000);document.getElementById("qTimer").textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}},500);
+loadQ();
+
+const ds=document.getElementById("disSelect");D.forEach((d,i)=>{let o=document.createElement("option");o.value=i;o.textContent=(i+1)+". "+d.title;ds.appendChild(o)});
+function renderDis(full=false){const d=D[+ds.value];document.getElementById("disBody").innerHTML=`<h3>${d.title}</h3><div class="notice"><b>Problématique :</b> ${d.problem}</div>`+(full?d.steps.map(s=>`<div class="step"><b>${s[0]}</b><br>${s[1]}</div>`).join(""):`<div class="step"><b>À faire</b><br>Définir les termes → dégager la tension → formuler la problématique → annoncer 3 axes → prévoir exemples Sénégal/éducation.</div>`) }
+ds.onchange=()=>renderDis(false);renderDis();
+function showDisAnswer(){renderDis(true)}
+function copyDis(){navigator.clipboard?.writeText(document.getElementById("disBody").innerText);alert("Squelette copié.");}
+
+const cl=document.getElementById("caseList");CASES.forEach((c,i)=>{cl.innerHTML+=`<div class="card case"><div class="tag">CAS ${i+1}</div><h3>${c.title}</h3><p>${c.situation}</p><h4>Questions</h4><ol>${c.questions.map(q=>`<li>${q}</li>`).join("")}</ol><button class="btn primary" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">Voir la correction-type</button><div class="feedback" hidden><b>Trame :</b> ${c.model}</div></div>`});
+
+const lg=document.getElementById("legalGrid");LEGAL.forEach((x,i)=>lg.innerHTML+=`<section class="card half"><div class="tag">FICHE ${i+1}</div><h3>${x[0]}</h3><p><b>${x[1]}</b></p><p>${x[2]}</p><button class="btn" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">Me tester</button><div class="feedback" hidden>Question : <b>Que devez-vous être capable d'expliquer à l'oral sur ${x[0]} ?</b><br>Répondez en 30 secondes en donnant : référence → principe → conséquence pour l'école → rôle éventuel de l'inspecteur.</div></section>`);
+
+const dg=document.getElementById("didGrid");DID.forEach((x,i)=>dg.innerHTML+=`<section class="card third"><div class="tag">${i+1}</div><h3>${x[0]}</h3><p>${x[1]}</p><p class="muted"><b>Réflexe inspecteur :</b> ${x[2]}</p></section>`);
+
+const os=document.getElementById("oralSelect");ORAL.forEach((x,i)=>{let o=document.createElement("option");o.value=i;o.textContent=(i+1)+". "+x[0];os.appendChild(o)});
+function newOral(){os.value=Math.floor(Math.random()*ORAL.length);renderOral()}
+function renderOral(){document.getElementById("oralQ").textContent=ORAL[+os.value][0];document.getElementById("oralAnswer").innerHTML=""}
+function revealOral(){document.getElementById("oralAnswer").innerHTML=`<div class="feedback"><b>Trame attendue :</b> ${ORAL[+os.value][1]}</div>`}
+os.onchange=renderOral;renderOral();
+
+let mockTimer=null,mockSec=7200,mockStarted=false;
+const mockQuestions=[
+"Dissertation : « Le numérique transforme-t-il nécessairement la qualité de l'enseignement de l'anglais ? » Construisez une problématique et un plan détaillé.",
+"Étude de cas : les résultats en anglais chutent alors que les enseignants respectent les progressions. Proposez une démarche d'inspection et un plan d'amélioration.",
+"Question de cours : présentez les fonctions de l'IEMS et expliquez comment elles se traduisent dans une visite de classe.",
+"Didactique : comparez brièvement pédagogie par objectifs, approche par compétences et approche communicative.",
+"Législation : expliquez les principaux apports de la loi 91-22 et de sa modification de 2004 pour le système éducatif."
+];
+function buildMock(){document.getElementById("mockPaper").innerHTML=mockQuestions.map((q,i)=>`<div class="case"><h4>${i+1}. ${q}</h4><textarea id="mq${i}" placeholder="Votre réponse..."></textarea></div>`).join("")}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function tickMock(){document.getElementById("mockTimer").textContent=fmt(mockSec);if(mockSec<=0){stopMock();alert("Temps écoulé.")}else mockSec--}
+document.getElementById("mockStart").onclick=()=>{if(mockStarted)return;mockStarted=true;mockSec=+document.getElementById("mockDuration").value*60;buildMock();clearInterval(mockTimer);mockTimer=setInterval(tickMock,1000);tickMock();document.getElementById("mockResult").innerHTML="<div class='notice'>Simulation en cours. Ne consultez pas la correction pendant la composition.</div>"};
+function stopMock(){clearInterval(mockTimer);mockStarted=false;let answered=mockQuestions.filter((_,i)=>document.getElementById("mq"+i)?.value.trim()).length;document.getElementById("mockResult").innerHTML=`<div class="feedback"><b>Simulation terminée.</b> ${answered}/${mockQuestions.length} réponses commencées. Auto-évaluation : notez chaque réponse sur 4 selon pertinence, structure, références, analyse et propositions.</div>`}
+document.getElementById("mockStop").onclick=stopMock;buildMock();
+
+let lastCoachAnswer="";
+function coachAnswer(q){
+  const s=q.toLowerCase();
+  const answer=(title,body,method,source)=>`${title}
+
+${body}
+
+Réponse attendue à l'oral : ${method}
+
+Repère documentaire : ${source}`;
+  if(/mission|fonction|iems|inspection/.test(s)) return answer("Missions de l'IEMS et conduite d'une inspection", "L'IEMS ne se limite ni à contrôler ni à sanctionner. Dans le cadre sénégalais présenté par le corpus FASTEF, ses fonctions articulent contrôle, animation, formation et encadrement pédagogique et technique. Une inspection professionnelle commence donc par la préparation : contexte de l'établissement, progression, résultats, documents de l'enseignant et objectifs de la visite. Pendant la séance, l'inspecteur recueille des faits observables - objectifs annoncés, activités, interaction, différenciation, évaluations et réactions des élèves. L'entretien transforme ensuite ces données en analyse partagée, reconnaît les acquis, fixe peu de priorités réalistes et débouche sur un suivi mesurable.", "« Je diagnostique à partir de preuves ; je rappelle le cadre ; j'analyse avec l'enseignant ; je propose un accompagnement ; je fixe des indicateurs et une échéance de suivi. »", "FASTEF - Département de formation des inspecteurs ; corpus IEMS du site.");
+  if(/91-22|2004-37|obligatoire|orientation|loi/.test(s)) return answer("Cadre de l'éducation au Sénégal", "La loi n°91-22 du 16 février 1991 porte orientation de l'Éducation nationale. Pour une réponse de concours, évitez la récitation isolée : partez de la référence, présentez le principe concerné et montrez sa conséquence pour l'accès, la qualité ou le pilotage de l'école. La loi n°2004-37 modifie notamment ce cadre en introduisant l'article 3 bis : scolarité obligatoire de six à seize ans, gratuité dans le public, obligation d'inscription et d'assiduité. L'inspecteur peut en tirer des questions concrètes : absences, maintien des élèves, conditions d'apprentissage, suivi des résultats et mobilisation des acteurs.", "« La norme n'est pas une citation décorative : elle guide le diagnostic, les responsabilités et l'action de suivi. »", "Loi 91-22 ; loi 2004-37. Vérifiez toujours la version officielle en vigueur.");
+  if(/task|tblt|tâche|communicative|clil|content/.test(s)) return answer("Analyser une pédagogie communicative ou par tâches", "Le PDF Techniques and Principles in Language Teaching présente les méthodes comme des ensembles cohérents de principes, techniques et procédures, et non comme des recettes. En Task-Based Language Teaching, l'élève mobilise la langue pour accomplir une tâche porteuse de sens ; l'inspecteur vérifie l'objectif communicatif, l'accessibilité des consignes, les ressources linguistiques, la qualité des interactions, le temps de parole des élèves et une phase de retour sur la langue. En CLIL/content-based instruction, la langue et un contenu disciplinaire se soutiennent mutuellement : il faut donc observer à la fois la compréhension du contenu et les progrès linguistiques.", "« Je ne juge pas l'étiquette de la méthode ; j'observe l'alignement entre intention, activité, interactions, traces d'apprentissage et évaluation. »", "Larsen-Freeman & Anderson, Techniques and Principles in Language Teaching, 3e éd.");
+  if(/vygotsky|zpd|étayage|scaffold/.test(s)) return answer("Vygotsky et l'étayage en classe d'anglais", "La zone proximale de développement désigne l'écart entre ce que l'apprenant réalise seul et ce qu'il peut réussir avec une médiation appropriée. En observation, l'enjeu n'est donc pas seulement de constater une difficulté : il faut regarder la nature des aides. Des exemples, modèles, reformulations, supports visuels, travail en binômes et questionnement progressif peuvent rendre une tâche accessible. L'aide doit ensuite s'alléger afin que l'élève assume progressivement la responsabilité de sa production.", "« Je recherche un étayage gradué, visible dans les tâches et les feedbacks, puis un retrait de l'aide qui prouve l'autonomie. »", "Repères de psychopédagogie du site et didactique des langues.");
+  if(/krashen|input|monitor|acquisition/.test(s)) return answer("Krashen : usage raisonné pour l'inspection", "Krashen distingue généralement acquisition et apprentissage conscient, et associe l'acquisition à une exposition compréhensible et signifiante à la langue. L'intérêt pour l'IEMS est pratique : les élèves reçoivent-ils un anglais suffisamment compréhensible, contextualisé et riche pour être réutilisé ? Les activités permettent-elles de comprendre avant de produire, de prendre des risques et de recevoir un retour utile ? Cette théorie ne dispense pas d'observer les preuves réelles : productions, compréhension, interactions et progression.", "« Une théorie éclaire mes critères d'observation ; elle ne remplace ni les programmes ni les données de classe. »", "Corpus de didactique intégré.");
+  if(/dissertation|problématique|plan/.test(s)) return answer("Construire une dissertation IEMS", "Commencez par définir les termes et identifier la tension véritable du sujet. Formulez ensuite une problématique qui appelle une démonstration, pas une réponse oui/non. Un plan solide peut aller du diagnostic des enjeux aux conditions de réussite, puis aux leviers de pilotage. Chaque partie doit être argumentée, illustrée par un contexte éducatif pertinent et reliée à l'action de l'inspecteur. La conclusion répond clairement, nuance si nécessaire et ouvre sur une proposition opérationnelle.", "« Définition - tension - problématique - axes démontrés - exemples contextualisés - réponse opérationnelle. »", "Méthode d'entraînement IEMS du site.");
+  if(/cas|diagnostic|résultat|echec|échec/.test(s)) return answer("Traiter une étude de cas d'inspectorat", "Une étude de cas se traite à partir de faits, jamais d'impressions. Identifiez le problème central, distinguez symptômes et causes, recueillez les données nécessaires et mobilisez le cadre pertinent. Analysez ensuite plusieurs options et proposez une décision proportionnée. Votre plan d'action doit préciser les acteurs, les moyens, l'échéance, les indicateurs et les modalités de suivi. Pour des résultats faibles en anglais, ventilez par niveau et compétence, examinez les copies et évaluations, observez les classes, puis organisez une remédiation accompagnée.", "« Faits - problème - causes - cadre - décision - plan d'action - indicateurs - suivi. »", "Grille d'étude de cas IEMS du site.");
+  return answer("Réponse de coaching", "Je peux produire des réponses développées sur les missions IEMS, le cadre éducatif sénégalais, l'observation d'un cours d'anglais, les méthodes du PDF, la didactique, l'évaluation, la dissertation et l'étude de cas. Précisez le thème et le format souhaité : fiche, réponse orale de 90 secondes, plan détaillé ou étude de cas.", "Donnez le contexte, la question exacte et le niveau de détail attendu.", "Corpus IEMS du site + PDF de didactique intégré.");
+}
+function addChat(text,who){ const d=document.createElement("div"); d.className="coachmsg "+who; d.textContent=text; document.getElementById("chat").appendChild(d); document.getElementById("chat").scrollTop=99999; if(who==="coach") lastCoachAnswer=text; }
+function askCoach(){const i=document.getElementById("coachInput"),q=i.value.trim();if(!q)return;addChat(q,"user");addChat(coachAnswer(q),"coach");i.value="";}
+function quickCoach(q){document.getElementById("coachInput").value=q;askCoach();}
+function reviewWrittenAnswer(){const value=document.getElementById("writtenAnswer").value.trim().toLowerCase();const box=document.getElementById("writtenFeedback");if(!value){box.innerHTML='<div class="notice">Écrivez ou dictez une réponse avant de demander l’analyse.</div>';return;}const checks=[["diagnostic",/diagnostic|constat|fait|problème/],["cadre / référence",/loi|décret|cadre|référence|programme/],["analyse didactique",/objectif|compétence|élève|apprentissage|évaluation/],["proposition d'action",/propose|action|formation|accompagne|recommande/],["suivi mesurable",/suivi|indicateur|échéance|évaluer|résultat/]];const found=checks.filter(x=>x[1].test(value)).map(x=>x[0]);const missing=checks.filter(x=>!x[1].test(value)).map(x=>x[0]);box.innerHTML='<div class="feedback"><b>Lecture coach :</b> '+found.length+'/5 dimensions visibles.<br><b>Points présents :</b> '+(found.join(', ')||'à renforcer')+'.<br><b>À ajouter :</b> '+(missing.join(', ')||'bonne couverture')+'.<br><br>Conseil : terminez par une action datée et un indicateur vérifiable.</div>';}
+let recognition=null;
+function toggleListening(){const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R){document.getElementById("coachStatus").textContent="La dictée n’est pas prise en charge par ce navigateur. Utilisez Chrome ou Edge et autorisez le microphone.";return;}if(recognition){recognition.stop();return;}recognition=new R();recognition.lang='fr-FR';recognition.interimResults=true;recognition.onstart=()=>{document.getElementById("voiceInput").textContent="■ Arrêter";document.getElementById("coachStatus").innerHTML='<span class="voice-live">Écoute en cours… parlez maintenant.</span>';};recognition.onresult=e=>{document.getElementById("coachInput").value=Array.from(e.results).map(r=>r[0].transcript).join('');};recognition.onend=()=>{recognition=null;document.getElementById("voiceInput").textContent="🎙 Dicter";document.getElementById("coachStatus").textContent="Dictée terminée : relisez la transcription puis envoyez votre question.";};recognition.onerror=()=>{recognition=null;document.getElementById("voiceInput").textContent="🎙 Dicter";document.getElementById("coachStatus").textContent="La dictée a rencontré un problème. Vérifiez l’autorisation du microphone.";};recognition.start();}
+function speakLastAnswer(){if(!lastCoachAnswer||!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(lastCoachAnswer);u.lang='fr-FR';u.rate=.96;window.speechSynthesis.speak(u);}
+document.getElementById("coachInput").addEventListener("keydown",e=>{if(e.key==="Enter")askCoach();});
+addChat("Bonjour. Je suis votre Coach IEMS Anglais. Je peux fournir des réponses longues et structurées, vous aider à préparer un oral ou analyser votre production écrite. Vous pouvez taper, dicter ou écouter mes réponses.","coach");
+
+const sg=document.getElementById("sourceGrid");SOURCES.forEach((s,i)=>sg.innerHTML+=`<section class="card half source"><div class="tag">SOURCE ${i+1}</div><h3>${s[0]}</h3><p>${s[1]}</p><a href="${s[2]}" target="_blank" rel="noopener">${s[2]}</a></section>`);
+updateStats();
+</script>
+</body>
+</html>
