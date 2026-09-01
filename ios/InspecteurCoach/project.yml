@@ -1,0 +1,24 @@
+name: InspecteurCoach
+options:
+  bundleIdPrefix: sn.iems
+  deploymentTarget:
+    iOS: 17.0
+targets:
+  InspecteurCoach:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: sn.iems.inspecteurcoach
+        INFOPLIST_FILE: Info.plist
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: "1,2"
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Inspecteur Coach
+        NSMicrophoneUsageDescription: "Le microphone sert à dicter vos questions au Coach IEMS."
+        NSSpeechRecognitionUsageDescription: "La reconnaissance vocale transcrit vos questions de préparation."
+        UILaunchScreen: {}
