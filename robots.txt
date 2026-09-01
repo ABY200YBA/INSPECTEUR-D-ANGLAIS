@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://animated-adventure-jgl2533.pages.github.io/
+
